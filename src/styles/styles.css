@@ -1,0 +1,402 @@
+@import 'leaflet/dist/leaflet.css';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+body.landing-page {
+  background-color: #f4f6f8;
+}
+
+button {
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 12px;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+fieldset > legend {
+  margin-bottom: 1rem;
+}
+
+form {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  margin: auto;
+  max-width: 400px;
+  padding: 2rem;
+}
+
+form label,
+form textarea,
+form fieldset,
+form button,
+form small {
+  display: block;
+  width: 100%;
+}
+
+header {
+  background-color: lightskyblue;
+}
+
+input {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  margin-top: 10px;
+  padding: 12px;
+  transition: border-color 0.3s ease;
+  width: 100%;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+textarea {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  margin-top: 10px;
+  min-height: 100px;
+  padding: 12px;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+  width: 100%;
+}
+
+textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.brand-name {
+  color: #333;
+  font-size: 1.125rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.container {
+  margin-inline: auto;
+  max-width: 1300px;
+  padding-inline: 32px;
+}
+
+.container h1 {
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.drawer-button {
+  background-color: transparent;
+  border: 0;
+  border-radius: 4px;
+  color: #141e16;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 8px;
+}
+
+.landing-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 4rem auto;
+  max-width: 900px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.landing-container a {
+  background-color: #007BFF;
+  border-radius: 6px;
+  color: white;
+  display: inline-block;
+  font-weight: 500;
+  margin: 0 0.5rem;
+  padding: 0.6rem 1.2rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.landing-container a:hover {
+  background-color: #0056b3;
+}
+
+.landing-container h2 {
+  color: #333;
+  font-size: 2.25rem;
+  margin-bottom: 1rem;
+}
+
+.landing-container p {
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.main-content {
+  padding-block: 20px;
+}
+
+.main-header {
+  align-items: center;
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+  min-height: 90px;
+  padding-block: 20px;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px 20px;
+  list-style: none;
+}
+
+.nav-list li a {
+  color: #333;
+  display: block;
+  padding: 6px 10px;
+  text-decoration: none;
+}
+
+.nav-list li a:hover {
+  text-decoration: underline;
+}
+
+.navigation-drawer {
+  background-color: #fff;
+  box-shadow: 0 0 4px 2px #00000033;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  min-height: 100vh;
+  padding: 20px 10px;
+  position: fixed;
+  transform: translateX(-100%);
+  transition: transform 350ms;
+  width: 200px;
+  z-index: 9999;
+}
+
+.navigation-drawer.open {
+  transform: translateX(0);
+}
+
+.skip-link {
+  background: #000;
+  color: #fff;
+  left: 0;
+  padding: 8px 16px;
+  position: absolute;
+  top: -40px;
+  transition: top 0.3s;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+.story-img {
+  border-radius: 6px;
+  max-width: 100%;
+}
+
+.story-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.story-list {
+  display: grid;
+  gap: 1rem;
+}
+
+#add-story-form {
+  max-width: 800px;
+}
+
+#add-story-form > *:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
+#add-story-form small {
+  margin-top: 0.5rem;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+#camera-container {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+#camera-preview {
+  background-color: #000;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  max-height: 300px;
+  object-fit: cover;
+  width: 100%;
+}
+
+#capture-button {
+  background-color: #28a745;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 16px;
+  transition: background-color 0.3s ease;
+}
+
+#capture-button:hover {
+  background-color: #218838;
+}
+
+#image-options {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+#image-options button {
+  background-color: #6c757d;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  flex: 1;
+  font-weight: 600;
+  padding: 10px;
+  transition: background-color 0.3s ease;
+}
+
+#image-options button:focus-visible {
+  outline: 3px solid #007bff;
+  outline-offset: 2px;
+  background-color: #0056b3;
+}
+
+#image-options button:hover {
+  background-color: #5a6268;
+}
+
+#image-preview {
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 auto 16px auto;
+  max-width: 100%;
+}
+
+#map {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+#menu-add-story,
+#menu-logout {
+  display: none;
+}
+
+@media screen and (width > 1000px) {
+  .drawer-button {
+    display: none;
+  }
+
+  .nav-list {
+    flex-direction: row;
+  }
+
+  .nav-list li a {
+    display: inline-block;
+  }
+
+  .navigation-drawer {
+    background-color: transparent;
+    box-shadow: none;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: auto;
+    padding: 0;
+    position: static;
+    transform: translateX(0);
+    width: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  #image-options {
+    flex-direction: column;
+  }
+
+  #image-options button {
+    width: 100%;
+  }
+}
+
+::view-transition-old(main-content),
+::view-transition-new(main-content) {
+  animation-duration: 300ms;
+}
+
+::view-transition-old(main-content) {
+  animation-name: fade-out;
+  opacity: 1;
+}
+
+::view-transition-new(main-content) {
+  animation-name: fade-in;
+  opacity: 0;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
