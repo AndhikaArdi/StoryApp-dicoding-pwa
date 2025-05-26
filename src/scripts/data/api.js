@@ -53,7 +53,7 @@ export async function subscribePushNotification({ endpoint, keys: { p256dh, auth
       ...json,
       ok: fetchResponse.ok,
     };
-
+    
   } catch (error) {
     // Penanganan error CORS (simulasi)
     console.warn('Simulasi: Gagal fetch, kemungkinan CORS. Mengembalikan response palsu.');
