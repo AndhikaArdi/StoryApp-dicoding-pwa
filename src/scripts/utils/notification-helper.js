@@ -95,7 +95,7 @@ export async function subscribe() {
   }
 }
 
-export async function unsubscribe() {
+export async function unsubscribe() { //tambah ini
   const failureUnsubscribeMessage = 'Langganan push notification gagal dinonaktifkan.';
   const successUnsubscribeMessage = 'Langganan push notification berhasil dinonaktifkan.';
 
