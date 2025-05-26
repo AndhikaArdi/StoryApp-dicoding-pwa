@@ -1,4 +1,5 @@
 export function generateSubscribeButtonTemplate() {
+  console.log('generateSubscribeButtonTemplate dipanggil');
   return `
     <button id="subscribe-button" class="btn subscribe-button">
       Subscribe <i class="fas fa-bell"></i>

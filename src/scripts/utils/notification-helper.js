@@ -22,6 +22,7 @@ export async function requestNotificationPermission() {
   }
   console.log('masuk request .. 3');
   const status = await Notification.requestPermission();
+  console.log('status permission:', status);
   console.log('masuk request .. 4 .. jawaban');
   if (status === 'denied') {
     alert('Izin notifikasi ditolak.');
@@ -53,10 +54,16 @@ export function generateSubscribeOptions() {
 }
 
 export async function subscribe() {
-  console.log('mulai masuk fungsi');
-  if (!(await requestNotificationPermission())) {
-    console.log('return pertama');
-    return;
+  try {
+    console.log('mulai masuk fungsi');
+    if (!(await requestNotificationPermission())) {
+      console.log('return pertama');
+      return;
+    }
+
+    // ... lanjutkan seperti biasa ...
+  } catch (error) {
+    console.error('subscribe: unexpected error:', error);
   }
  
   if (await isCurrentPushSubscriptionAvailable()) {

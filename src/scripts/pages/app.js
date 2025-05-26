@@ -38,7 +38,7 @@ class App {
     });
   }
 
-  updateNavbar() {
+  async updateNavbar() {
     const navList = document.querySelector('#nav-list');
     const isUserLoggedIn = isLoggedIn();
 
@@ -57,9 +57,13 @@ class App {
   }
 
   async #setupPushNotification() {
+    console.log('Menjalankan setupPushNotification');
     const pushNotificationTools = document.getElementById('subscribe-button-container');
 
-    if (!pushNotificationTools) return;
+    if (!pushNotificationTools) {
+      console.warn('subscribe-button-container tidak ditemukan');
+      return;
+    }
 
     const isSubscribed = await isCurrentPushSubscriptionAvailable();
     if (isSubscribed) {
@@ -70,6 +74,7 @@ class App {
 
     pushNotificationTools.innerHTML = generateSubscribeButtonTemplate();
     document.getElementById('subscribe-button').addEventListener('click', () => {
+      console.log('Tombol Subscribe diklik');
       subscribe().finally(() => {
         this.#setupPushNotification();
       });
@@ -77,7 +82,7 @@ class App {
   }
 
   async renderPage() {
-    this.updateNavbar();
+    await this.updateNavbar();
 
     const url = getActiveRoute();
     const page = routes[url];
