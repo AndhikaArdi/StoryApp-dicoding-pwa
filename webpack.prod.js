@@ -41,7 +41,7 @@ module.exports = merge(common, {
     }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: "src/public/images/icons", to: "icons" },
+        { from: "src/public/icons", to: "icons" },
         { from: "src/public/manifest.json", to: "manifest.json" },
       ],
     }),
