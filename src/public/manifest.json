@@ -1,7 +1,10 @@
 {
-  "name": "My Web App",
-  "short_name": "WebApp",
-  "start_url": ".",
+  "id": "/#/",
+  "start_url": "/#/",
+  "scope": "/",
+  "name": "Dicoding StoryApp",
+  "short_name": "StoryApp",
+  "description": "StoryApp adalah aplikasi web yang memungkinkan pengguna untuk berbagi cerita dan dilengkapi fitur untuk menyertakan gambar dan lokasi dari cerita.",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#4A90E2",
