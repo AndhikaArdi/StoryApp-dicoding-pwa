@@ -3,7 +3,7 @@ self.addEventListener('push', (event) => {
  
   async function chainPromise() {
     await self.registration.showNotification('Ada laporan baru untuk Anda!', {
-      body: 'Terjadi kerusakan lampu jalan di Jl. Melati',
+      body: 'uji coba notif berhasil',
     });
   }
  

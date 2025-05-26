@@ -57,24 +57,20 @@ class App {
   }
 
   async #setupPushNotification() {
-    console.log('Menjalankan setupPushNotification');
     const pushNotificationTools = document.getElementById('subscribe-button-container');
 
     if (!pushNotificationTools) {
-      console.warn('subscribe-button-container tidak ditemukan');
       return;
     }
 
     const isSubscribed = await isCurrentPushSubscriptionAvailable();
     if (isSubscribed) {
       pushNotificationTools.innerHTML = generateUnsubscribeButtonTemplate();
-      console.log('sudah subscribe');
       return;
     }
 
     pushNotificationTools.innerHTML = generateSubscribeButtonTemplate();
     document.getElementById('subscribe-button').addEventListener('click', () => {
-      console.log('Tombol Subscribe diklik');
       subscribe().finally(() => {
         this.#setupPushNotification();
       });

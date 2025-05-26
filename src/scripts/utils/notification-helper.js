@@ -11,19 +11,17 @@ export function isNotificationGranted() {
 }
  
 export async function requestNotificationPermission() {
-  console.log('masuk request .. 1');
+
   if (!isNotificationAvailable()) {
     console.error('Notification API unsupported.');
     return false;
   }
-  console.log('masuk request .. 2');
+
   if (isNotificationGranted()) {
     return true;
   }
-  console.log('masuk request .. 3');
+
   const status = await Notification.requestPermission();
-  console.log('status permission:', status);
-  console.log('masuk request .. 4 .. jawaban');
   if (status === 'denied') {
     alert('Izin notifikasi ditolak.');
     return false;
@@ -55,13 +53,9 @@ export function generateSubscribeOptions() {
 
 export async function subscribe() {
   try {
-    console.log('mulai masuk fungsi');
     if (!(await requestNotificationPermission())) {
-      console.log('return pertama');
       return;
     }
-
-    // ... lanjutkan seperti biasa ...
   } catch (error) {
     console.error('subscribe: unexpected error:', error);
   }
@@ -70,21 +64,18 @@ export async function subscribe() {
     alert('Sudah berlangganan push notification.');
     return;
   }
- 
-  console.log('Mulai berlangganan push notification...');
 
   const failureSubscribeMessage = 'Langganan push notification gagal diaktifkan.';
   const successSubscribeMessage = 'Langganan push notification berhasil diaktifkan.';
   let pushSubscription;
+
   try {
-    console.log('mulai nunggu');
     const registration = await navigator.serviceWorker.getRegistration();
     pushSubscription = await registration.pushManager.subscribe(generateSubscribeOptions());
     const { endpoint, keys } = pushSubscription.toJSON();
     
-    console.log('masih nunggu');
     const response = await subscribePushNotification({ endpoint, keys });
-    console.log('hasil');
+
     if (!response.ok) {
       console.error('subscribe: response:', response);
       alert(failureSubscribeMessage);
