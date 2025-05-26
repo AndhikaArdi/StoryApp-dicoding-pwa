@@ -8,8 +8,9 @@ module.exports = {
     sw: path.resolve(__dirname, 'src/scripts/sw.js'),
   },
   output: {
-    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    filename: '[name].bundle.js',
+    publicPath: '/StoryApp-dicoding-pwa/',
   },
   module: {
     rules: [
