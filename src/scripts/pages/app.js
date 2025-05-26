@@ -4,7 +4,11 @@ import { isLoggedIn, clearToken } from '../data/auth-token';
 
 import { generateSubscribeButtonTemplate, generateUnsubscribeButtonTemplate } from '../template';
 import { isServiceWorkerAvailable } from '../utils';
-import { isCurrentPushSubscriptionAvailable, subscribe } from '../utils/notification-helper';
+import { 
+  isCurrentPushSubscriptionAvailable, 
+  subscribe , 
+  unsubscribe
+} from '../utils/notification-helper';
 
 class App {
   #content = null;
@@ -66,6 +70,12 @@ class App {
     const isSubscribed = await isCurrentPushSubscriptionAvailable();
     if (isSubscribed) {
       pushNotificationTools.innerHTML = generateUnsubscribeButtonTemplate();
+      document.getElementById('unsubscribe-button').addEventListener('click', () => {
+        unsubscribe().finally(() => {
+          this.#setupPushNotification();
+        });
+      });
+ 
       return;
     }
 
