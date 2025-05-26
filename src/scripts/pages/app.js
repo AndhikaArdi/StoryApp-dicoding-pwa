@@ -52,6 +52,7 @@ class App {
     navList.innerHTML += '<li><a href="#/about">About</a></li>';
 
     if (isUserLoggedIn) {
+      navList.innerHTML += '<li><a href="#/save">Tersimpan</a></li>';
       navList.innerHTML += '<li><a href="#/add">Tambah Cerita</a></li>';
       navList.innerHTML += '<li><a href="#/logout">Logout</a></li>';
       navList.innerHTML += `<li id="subscribe-button-container">${generateSubscribeButtonTemplate()}</li>`;
