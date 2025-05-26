@@ -64,6 +64,7 @@ class App {
     const isSubscribed = await isCurrentPushSubscriptionAvailable();
     if (isSubscribed) {
       pushNotificationTools.innerHTML = generateUnsubscribeButtonTemplate();
+      console.log('sudah subscribe');
       return;
     }
 
