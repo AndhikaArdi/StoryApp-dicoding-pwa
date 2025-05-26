@@ -11,17 +11,18 @@ export function isNotificationGranted() {
 }
  
 export async function requestNotificationPermission() {
+  console.log('masuk request .. 1');
   if (!isNotificationAvailable()) {
     console.error('Notification API unsupported.');
     return false;
   }
- 
+  console.log('masuk request .. 2');
   if (isNotificationGranted()) {
     return true;
   }
- 
+  console.log('masuk request .. 3');
   const status = await Notification.requestPermission();
- 
+  console.log('masuk request .. 4 .. jawaban');
   if (status === 'denied') {
     alert('Izin notifikasi ditolak.');
     return false;
