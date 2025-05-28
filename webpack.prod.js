@@ -9,6 +9,9 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = merge(common, {
   mode: 'production',
+  output: {
+    publicPath: '/StoryApp-dicoding-pwa/',
+  },
   module: {
     rules: [
       {
@@ -34,10 +37,13 @@ module.exports = merge(common, {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'app.css',
+    }),
     new InjectManifest({
       swSrc: path.resolve(__dirname, "src/scripts/sw.js"),
       swDest: "sw.bundle.js",
+      exclude: [/\.LICENSE\.txt$/],
     }),
     new CopyWebpackPlugin({
       patterns: [

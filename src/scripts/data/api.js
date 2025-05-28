@@ -1,11 +1,15 @@
 import CONFIG from '../config';
 import { getToken } from './auth-token';
 
-const BASE_URL = CONFIG.BASE_URL;
+const ENDPOINTS = {
+  STORIES: `${CONFIG.BASE_URL}/stories`,
+  SUBSCRIBE: `${CONFIG.BASE_URL}/notifications/subscribe`,
+  UNSUBSCRIBE: `${CONFIG.BASE_URL}/notifications/subscribe`,
+};
 
 export async function getStories() {
   const token = getToken();
-  const response = await fetch(`${BASE_URL}/stories`, {
+  const response = await fetch(ENDPOINTS.STORIES, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -18,7 +22,7 @@ export async function getStories() {
 
 export async function postStory(formData) {
   const token = getToken();
-  const response = await fetch(`${BASE_URL}/stories`, {
+  const response = await fetch(STORIES, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -39,7 +43,7 @@ export async function subscribePushNotification({ endpoint, keys: { p256dh, auth
   });
  
   try {
-    const fetchResponse = await fetch(`${CONFIG.BASE_URL}/push-subscriptions`, {
+    const fetchResponse = await fetch(ENDPOINTS.SUBSCRIBE, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -55,12 +59,7 @@ export async function subscribePushNotification({ endpoint, keys: { p256dh, auth
     };
     
   } catch (error) {
-    // Penanganan error CORS (simulasi)
-    console.warn('Simulasi: Gagal fetch, kemungkinan CORS. Mengembalikan response palsu.');
-    return {
-      ok: true,
-      json: async () => ({ message: 'Fake subscribed' }),
-    };
+    console.error(`Subscribe error at ${ENDPOINTS.SUBSCRIBE}:`, error);
   }
 }
  
@@ -84,11 +83,6 @@ export async function unsubscribePushNotification({ endpoint }) {
       ok: fetchResponse.ok,
     };
   } catch (error) {
-    // Penanganan error CORS (simulasi)
-    console.warn('Simulasi: Gagal fetch, kemungkinan CORS. Mengembalikan response palsu.');
-    return {
-      ok: true,
-      json: async () => ({ message: 'Fake unsubscribed' }),
-    };
+    console.error(`Unsubscribe error at ${ENDPOINTS.UNSUBSCRIBE}:`, error);
   }
 }

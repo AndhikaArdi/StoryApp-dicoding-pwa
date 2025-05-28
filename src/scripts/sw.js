@@ -1,11 +1,9 @@
-/* eslint-disable no-restricted-globals */
 import { precacheAndRoute } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { NetworkFirst, StaleWhileRevalidate, CacheFirst } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { ExpirationPlugin } from 'workbox-expiration';
 
-// ===== Instalasi & Aktivasi =====
 self.addEventListener('install', (event) => {
   self.skipWaiting();
 });
@@ -13,11 +11,8 @@ self.addEventListener('activate', (event) => {
   clients.claim();
 });
 
-// ===== Precache file hasil build Webpack =====
 precacheAndRoute(self.__WB_MANIFEST || []);
 
-// ===== Routing Workbox =====
-// Cache halaman navigasi (SPA)
 registerRoute(
   ({ request }) => request.mode === 'navigate',
   new NetworkFirst({
@@ -28,7 +23,6 @@ registerRoute(
   })
 );
 
-// Cache file CSS, JS, dll
 registerRoute(
   ({ request }) =>
     request.destination === 'style' ||
@@ -42,7 +36,6 @@ registerRoute(
   })
 );
 
-// Cache gambar
 registerRoute(
   ({ request }) => request.destination === 'image',
   new CacheFirst({
@@ -54,7 +47,6 @@ registerRoute(
   })
 );
 
-// ===== Push Notification =====
 self.addEventListener('push', (event) => {
   let data = {};
   try {

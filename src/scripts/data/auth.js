@@ -1,7 +1,12 @@
-const BASE_URL = 'https://story-api.dicoding.dev/v1';
+import CONFIG from '../config';
+
+const ENDPOINTS = {
+  REGISTER: `${CONFIG.BASE_URL}/register`,
+  LOGIN: `${CONFIG.BASE_URL}/login`,
+};
 
 export async function register({ name, email, password }) {
-  const response = await fetch(`${BASE_URL}/register`, {
+  const response = await fetch(ENDPOINTS.REGISTER, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -15,7 +20,7 @@ export async function register({ name, email, password }) {
 }
 
 export async function login({ email, password }) {
-  const response = await fetch(`${BASE_URL}/login`, {
+  const response = await fetch(ENDPOINTS.LOGIN, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
