@@ -22,7 +22,7 @@ export async function getStories() {
 
 export async function postStory(formData) {
   const token = getToken();
-  const response = await fetch(STORIES, {
+  const response = await fetch(ENDPOINTS.STORIES, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
