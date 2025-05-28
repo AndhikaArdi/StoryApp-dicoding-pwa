@@ -41,7 +41,11 @@ export async function getPushSubscription() {
 }
  
 export async function isCurrentPushSubscriptionAvailable() {
-  return !!(await getPushSubscription());
+  if (!('serviceWorker' in navigator)) return false;
+
+  const registration = await navigator.serviceWorker.ready;
+  const subscription = await registration.pushManager.getSubscription();
+  return !!subscription;
 }
  
 export function generateSubscribeOptions() {
